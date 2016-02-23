@@ -10,5 +10,31 @@ package jc.discountstrategy;
  * @author Juan
  */
 public class Customer {
+    private String customerID;
+    private String customerName;
+
+    public Customer(String customerID, String customerName) {
+        setCustomerID(customerID);
+        setCustomerName(customerName);
+    }
+
+    public final String getCustomerID() {
+        return customerID;
+    }
+
+    public final void setCustomerID(String customerID) {
+        // needs validation
+        this.customerID = customerID;
+    }
+
+    public final String getCustomerName() {
+        return customerName;
+    }
+
+    public final void setCustomerName(String customerName) {
+        // needs validation
+        this.customerName = customerName;
+    }
+    
     
 }
