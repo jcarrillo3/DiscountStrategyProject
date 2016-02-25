@@ -23,6 +23,7 @@ public class JCDiscountStrategy {
         Register register = new Register();
         register.startNewSale("100", db);
         register.addItemToSale("10", 2, db);
+        
     }
     
 }

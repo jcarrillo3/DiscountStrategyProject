@@ -12,7 +12,14 @@ package jc.discountstrategy;
 public class LineItem {
     private Product product;
     private int qty;
+    private double subtotal;
 
+    public LineItem(Product product, int qty, double unitPrice) {
+        this.product = product;
+        this.qty = qty;
+        setSubtotal(unitPrice);
+    }
+    
     public Product getProduct() {
         return product;
     }
@@ -27,6 +34,15 @@ public class LineItem {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public double getSubtotal() {
+        subtotal = qty * product.getUnitCost();
+        return subtotal;
+    }
+
+    public void setSubtotal(double unitPrice) {
+        this.subtotal = qty * unitPrice;
     }
     
     

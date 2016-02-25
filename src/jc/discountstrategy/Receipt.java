@@ -22,9 +22,16 @@ public class Receipt {
     }
     public Receipt(String prodID, int qty, DatabaseStrategy db) {
         setDb(db);
-        setProduct(db.findProductByID(prodID));
-        li.setProduct(product);
+        li.setProduct(db.findProductByID(prodID));
         li.setQty(qty);
+        addNewLineItem();
+    }
+    public final void addNewLineItem(){
+        for (LineItem l: lineItems){
+            if(l == null){
+                l = new LineItem(li.getProduct(), li.getQty(), product.getUnitCost());
+            }
+        }
     }
 
     public final Customer getCustomer() {
@@ -36,11 +43,11 @@ public class Receipt {
         this.customer = customer;
     }
 
-    public Product getProduct() {
+    public final Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public final void setProduct(Product product) {
         this.product = product;
     }
     
