@@ -12,26 +12,31 @@ package jc.discountstrategy;
 public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
-    private Product product;
-    private LineItem li;
-    private LineItem[] lineItems = new LineItem[3];
+    private LineItem[] lineItems;
 
     public Receipt(String custID, DatabaseStrategy db) {
         setDb(db);
         setCustomer(db.findCustomerByID(custID));
+        lineItems = new LineItem[0];
     }
-    public Receipt(String prodID, int qty, DatabaseStrategy db) {
-        setDb(db);
-        li.setProduct(db.findProductByID(prodID));
-        li.setQty(qty);
-        addNewLineItem();
+//    public Receipt(String prodID, int qty, DatabaseStrategy db) {
+//        setDb(db);
+//        //li.setProduct(db.findProductByID(prodID));
+//        //li.setQty(qty);
+//        //addNewLineItem();
+//    }
+    public final void addItemToReceipt(String prodID, int qty){
+        LineItem item = new LineItem(prodID, qty, db);
+        
+        addItemToArray(lineItems, item);
+
     }
-    public final void addNewLineItem(){
-        for (LineItem l: lineItems){
-            if(l == null){
-                l = new LineItem(li.getProduct(), li.getQty(), product.getUnitCost());
-            }
-        }
+    private final void addItemToArray(LineItem[] origArray, LineItem item){
+        LineItem[] tempArray = new LineItem[origArray.length+1];
+        System.arraycopy(origArray, 0, tempArray, 0, origArray.length);
+        tempArray[tempArray.length-1] = item;
+        origArray = tempArray;
+        lineItems = origArray;
     }
 
     public final Customer getCustomer() {
@@ -41,14 +46,6 @@ public class Receipt {
     public final void setCustomer(Customer customer) {
         // needs validation
         this.customer = customer;
-    }
-
-    public final Product getProduct() {
-        return product;
-    }
-
-    public final void setProduct(Product product) {
-        this.product = product;
     }
     
     public final DatabaseStrategy getDb() {

@@ -12,38 +12,38 @@ package jc.discountstrategy;
 public class LineItem {
     private Product product;
     private int qty;
-    private double subtotal;
 
-    public LineItem(Product product, int qty, double unitPrice) {
-        this.product = product;
+    public LineItem(String prodID, int qty, DatabaseStrategy db) {
+        setProduct(db.findProductByID(prodID));
         this.qty = qty;
-        setSubtotal(unitPrice);
     }
     
-    public Product getProduct() {
+    public final Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public final void setProduct(Product product) {
+        // needs validation
         this.product = product;
     }
 
-    public int getQty() {
+    public final int getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
+    public final void setQty(int qty) {
+        // needs validation
         this.qty = qty;
     }
 
-    public double getSubtotal() {
-        subtotal = qty * product.getUnitCost();
-        return subtotal;
-    }
-
-    public void setSubtotal(double unitPrice) {
-        this.subtotal = qty * unitPrice;
-    }
+//    public double getSubtotal() {
+//        subtotal = qty * product.getUnitCost();
+//        return subtotal;
+//    }
+//
+//    public void setSubtotal(double unitPrice) {
+//        this.subtotal = qty * unitPrice;
+//    }
     
     
 }

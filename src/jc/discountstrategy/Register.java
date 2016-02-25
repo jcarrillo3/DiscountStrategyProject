@@ -12,16 +12,17 @@ package jc.discountstrategy;
 public class Register {
     private Receipt receipt;
     private String storeName;
+    private ReceiptOutputStrategy receiptOutput;
     
     public final void startNewSale(String custID, DatabaseStrategy db){
         // needs validation
         receipt = new Receipt(custID, db);
     }
     public final void endSale(){
-        
+        receiptOutput.printReceipt(receipt);
     }
-    public final void addItemToSale(String prodID, int qty, DatabaseStrategy db){
-        receipt = new Receipt(prodID, qty, db);
+    public final void addItemToSale(String prodID, int qty){
+        receipt.addItemToReceipt(prodID, qty);
     }
 
     public final Receipt getReceipt() {

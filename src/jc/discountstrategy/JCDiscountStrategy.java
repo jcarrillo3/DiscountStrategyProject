@@ -22,8 +22,21 @@ public class JCDiscountStrategy {
         // Start talking to objects
         Register register = new Register();
         register.startNewSale("100", db);
-        register.addItemToSale("10", 2, db);
         
+        // test code
+        Customer customer = register.getReceipt().getCustomer();
+        System.out.println("Customer "+ customer.getCustomerName()
+                            + " found and added to receipt");
+        
+        register.addItemToSale("10", 2);
+        register.addItemToSale("20", 1);
+        register.addItemToSale("30", 3);
+        
+        //test code
+        LineItem[] items = register.getReceipt().getLineItems();
+        for(LineItem item: items){
+            System.out.println(item.getProduct().getProductName());
+        }
     }
     
 }
