@@ -9,11 +9,11 @@ package jc.discountstrategy;
  *
  * @author Juan
  */
-public class FakeDatabase {
+public class FakeDatabase implements DatabaseStrategy {
     private Customer [] customers = {
         new Customer("100", "Bob James"),
         new Customer("101", "John James"),
-        new Customer("102", "Tom James")
+        new Customer("102", "Sue James")
     };
     private Product [] products = {
         new Product("10", "Brewer's Hat", 29.95, new PercentOffDiscount(.10)),
@@ -21,6 +21,7 @@ public class FakeDatabase {
         new Product("30", "Men's Black Belt", 19.95, new NoDiscount())
     };
     
+    @Override
     public final Product findProductByID(String prodID){
        // needs validation
         Product product = null;
@@ -34,6 +35,7 @@ public class FakeDatabase {
         return product; 
     }
     
+    @Override
     public final Customer findCustomerByID(String custID){
         // needs validation
         Customer customer = null;
