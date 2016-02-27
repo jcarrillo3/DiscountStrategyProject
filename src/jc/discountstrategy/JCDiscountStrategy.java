@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package jc.discountstrategy;
-
 /**
  *
  * @author Juan
@@ -30,7 +29,7 @@ public class JCDiscountStrategy {
         
         register.addItemToSale("10", 2);
         register.addItemToSale("20", 1);
-        register.addItemToSale("30", 3);
+        register.addItemToSale("30", 2);
         
         //test code
 //        LineItem[] items = register.getReceipt().getLineItems();
@@ -41,7 +40,6 @@ public class JCDiscountStrategy {
         ReceiptOutputStrategy output2 = new JOptionOutput();
         register.endSale(output);
         register.endSale(output2);
-        //System.out.println(register.getReceipt().getReceiptHeader());
     }
     
 }

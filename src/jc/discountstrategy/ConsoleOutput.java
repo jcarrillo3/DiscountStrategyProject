@@ -17,6 +17,7 @@ public class ConsoleOutput implements ReceiptOutputStrategy {
         for (LineItem item: receipt.getLineItems()){
             System.out.println(item.getLineItemData());
         }
+        System.out.println("Total: "+ receipt.getReceiptTotal());
     }
     
 }

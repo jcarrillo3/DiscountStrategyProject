@@ -20,8 +20,7 @@ public class FlatAmtDiscount implements DiscountStrategy {
     @Override
     public final double getDiscountAmt(int qty, double unitCost) {
         // needs validation
-        double discountAmt = unitCost - discountRate;
-        return discountAmt; 
+        return discountRate; 
     }
 
     public final double getDiscountRate() {

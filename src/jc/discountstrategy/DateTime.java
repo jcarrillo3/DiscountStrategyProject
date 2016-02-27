@@ -15,8 +15,7 @@ public class DateTime {
     public String getDateTime() {
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String dateTime = df.format(date);
-        return dateTime;
+        return df.format(date);
     }
     
 }

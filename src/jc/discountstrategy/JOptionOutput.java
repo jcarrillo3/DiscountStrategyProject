@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package jc.discountstrategy;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 /**
  *
  * @author Juan
@@ -15,10 +15,11 @@ public class JOptionOutput implements ReceiptOutputStrategy{
     public void printReceipt(Receipt receipt) {
         String lineItems = "";
         for (LineItem item: receipt.getLineItems()){
-            lineItems = lineItems + "\n" + item.getLineItemData();
+            lineItems += "\n" + item.getLineItemData();
         }
-        JOptionPane.showMessageDialog(null, receipt.getReceiptHeader() +
-                lineItems);
+        lineItems += "\n\n" + "Total: " +receipt.getReceiptTotal();
+        JOptionPane.showMessageDialog(null, new JTextArea(receipt.getReceiptHeader() +
+                lineItems));
     }
     
 }

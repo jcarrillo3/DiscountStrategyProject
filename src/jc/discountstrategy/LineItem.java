@@ -18,8 +18,8 @@ public class LineItem {
         this.qty = qty;
     }
     public String getLineItemData(){
-        String data = product.getProductID() + " " + product.getProductName()
-                + " " + qty + " " + this.getSubtotal() + " "
+        String data = product.getProductID() + "    " + product.getProductName()
+                + "\t " + qty + "\t" + this.getSubtotal() + "\t  "
                 + product.getDiscount().getDiscountAmt(qty, product.getUnitCost());
         return data;
     }

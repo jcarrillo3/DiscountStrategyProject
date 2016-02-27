@@ -28,7 +28,6 @@ public class Register {
     public Receipt getReceipt(){
         return receipt;
     }
-    
 
     public final void setReceipt(Receipt receipt) {
         // needs validation

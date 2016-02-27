@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package jc.discountstrategy;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author Juan
@@ -13,7 +14,6 @@ public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
     private LineItem[] lineItems;
-    private DateTime dateTime;
 
     public Receipt(String custID, DatabaseStrategy db) {
         setDb(db);
@@ -34,15 +34,29 @@ public class Receipt {
         origArray = tempArray;
         lineItems = origArray;
     }
+    public String getDateTime(){
+        Date date = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        return df.format(date);
+    }
     
     public final String getReceiptHeader() {
-        String header = "Kohls Dept. Store \n"
-                //+ dateTime.getDateTime() + "\n"
-                + "ID       Product         Qty         Sub         Discount \n"
-                + "---------------------------------------------------------  \n"
+        String header = "Kohls Dept. Store  \n"
+                + getDateTime() + "\n"
+                + "Customer: "+getCustomer().getCustomerName() +"\n\n"
+                + "ID     Product         Qty    Sub     Discount \n"
+                + "--------------------------------------------------"
                 ;
         return header;
     }
+    public double getReceiptTotal(){
+        double total = 0;
+        for (LineItem item: lineItems){
+            total += item.getSubtotal() - item.getDiscountAmt();
+        }
+        return total;
+    }
+    
 
     public final Customer getCustomer() {
         return customer;
