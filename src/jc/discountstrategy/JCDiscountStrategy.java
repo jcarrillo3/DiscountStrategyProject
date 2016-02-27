@@ -24,19 +24,24 @@ public class JCDiscountStrategy {
         register.startNewSale("100", db);
         
         // test code
-        Customer customer = register.getReceipt().getCustomer();
-        System.out.println("Customer "+ customer.getCustomerName()
-                            + " found and added to receipt");
+//        Customer customer = register.getReceipt().getCustomer();
+//        System.out.println("Customer "+ customer.getCustomerName()
+//                            + " found and added to receipt");
         
         register.addItemToSale("10", 2);
         register.addItemToSale("20", 1);
         register.addItemToSale("30", 3);
         
         //test code
-        LineItem[] items = register.getReceipt().getLineItems();
-        for(LineItem item: items){
-            System.out.println(item.getProduct().getProductName());
-        }
+//        LineItem[] items = register.getReceipt().getLineItems();
+//        for(LineItem item: items){
+//            System.out.println(item.getProduct().getProductName());
+//        }
+        ReceiptOutputStrategy output = new ConsoleOutput();
+        ReceiptOutputStrategy output2 = new JOptionOutput();
+        register.endSale(output);
+        register.endSale(output2);
+        //System.out.println(register.getReceipt().getReceiptHeader());
     }
     
 }

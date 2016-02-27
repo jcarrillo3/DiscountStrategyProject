@@ -18,16 +18,17 @@ public class Register {
         // needs validation
         receipt = new Receipt(custID, db);
     }
-    public final void endSale(){
+    public final void endSale(ReceiptOutputStrategy receiptOutput){
         receiptOutput.printReceipt(receipt);
     }
     public final void addItemToSale(String prodID, int qty){
         receipt.addItemToReceipt(prodID, qty);
     }
 
-    public final Receipt getReceipt() {
+    public Receipt getReceipt(){
         return receipt;
     }
+    
 
     public final void setReceipt(Receipt receipt) {
         // needs validation

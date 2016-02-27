@@ -13,7 +13,10 @@ public class ConsoleOutput implements ReceiptOutputStrategy {
 
     @Override
     public void printReceipt(Receipt receipt) {
-        
+        System.out.println(receipt.getReceiptHeader());
+        for (LineItem item: receipt.getLineItems()){
+            System.out.println(item.getLineItemData());
+        }
     }
     
 }

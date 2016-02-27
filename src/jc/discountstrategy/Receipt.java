@@ -13,18 +13,14 @@ public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
     private LineItem[] lineItems;
+    private DateTime dateTime;
 
     public Receipt(String custID, DatabaseStrategy db) {
         setDb(db);
         setCustomer(db.findCustomerByID(custID));
         lineItems = new LineItem[0];
     }
-//    public Receipt(String prodID, int qty, DatabaseStrategy db) {
-//        setDb(db);
-//        //li.setProduct(db.findProductByID(prodID));
-//        //li.setQty(qty);
-//        //addNewLineItem();
-//    }
+
     public final void addItemToReceipt(String prodID, int qty){
         LineItem item = new LineItem(prodID, qty, db);
         
@@ -37,6 +33,15 @@ public class Receipt {
         tempArray[tempArray.length-1] = item;
         origArray = tempArray;
         lineItems = origArray;
+    }
+    
+    public final String getReceiptHeader() {
+        String header = "Kohls Dept. Store \n"
+                //+ dateTime.getDateTime() + "\n"
+                + "ID       Product         Qty         Sub         Discount \n"
+                + "---------------------------------------------------------  \n"
+                ;
+        return header;
     }
 
     public final Customer getCustomer() {

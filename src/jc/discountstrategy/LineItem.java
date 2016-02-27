@@ -17,6 +17,12 @@ public class LineItem {
         setProduct(db.findProductByID(prodID));
         this.qty = qty;
     }
+    public String getLineItemData(){
+        String data = product.getProductID() + " " + product.getProductName()
+                + " " + qty + " " + this.getSubtotal() + " "
+                + product.getDiscount().getDiscountAmt(qty, product.getUnitCost());
+        return data;
+    }
     
     public final Product getProduct() {
         return product;
@@ -36,14 +42,13 @@ public class LineItem {
         this.qty = qty;
     }
 
-//    public double getSubtotal() {
-//        subtotal = qty * product.getUnitCost();
-//        return subtotal;
-//    }
-//
-//    public void setSubtotal(double unitPrice) {
-//        this.subtotal = qty * unitPrice;
-//    }
+    public double getSubtotal() {
+        return product.getUnitCost() * qty;
+    }
+    public double getDiscountAmt() {
+        return product.getDiscount().getDiscountAmt(qty, product.getUnitCost()) * qty;
+    }
+
     
     
 }

@@ -10,10 +10,15 @@ import javax.swing.JOptionPane;
  * @author Juan
  */
 public class JOptionOutput implements ReceiptOutputStrategy{
-
+    
     @Override
     public void printReceipt(Receipt receipt) {
-        
+        String lineItems = "";
+        for (LineItem item: receipt.getLineItems()){
+            lineItems = lineItems + "\n" + item.getLineItemData();
+        }
+        JOptionPane.showMessageDialog(null, receipt.getReceiptHeader() +
+                lineItems);
     }
     
 }
