@@ -11,15 +11,15 @@ package jc.discountstrategy;
  */
 public class Register {
     private Receipt receipt;
-    private String storeName;
     private ReceiptOutputStrategy receiptOutput;
     
-    public final void startNewSale(String custID, DatabaseStrategy db){
+    public final void startNewSale(String custID, Store store, DatabaseStrategy db){
         // needs validation
-        receipt = new Receipt(custID, db);
+        receipt = new Receipt(custID, store, db);
     }
-    public final void endSale(ReceiptOutputStrategy receiptOutput){
+    public final void endSale(ReceiptOutputStrategy consoleOutput, ReceiptOutputStrategy guiOutput){
         receiptOutput.printReceipt(receipt);
+        guiOutput.printReceipt(receipt);
     }
     public final void addItemToSale(String prodID, int qty){
         receipt.addItemToReceipt(prodID, qty);
@@ -32,15 +32,6 @@ public class Register {
     public final void setReceipt(Receipt receipt) {
         // needs validation
         this.receipt = receipt;
-    }
-
-    public final String getStoreName() {
-        return storeName;
-    }
-
-    public final void setStoreName(String storeName) {
-        // needs validation
-        this.storeName = storeName;
     }
     
 }

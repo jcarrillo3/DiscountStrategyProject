@@ -20,7 +20,8 @@ public class JCDiscountStrategy {
         
         // Start talking to objects
         Register register = new Register();
-        register.startNewSale("100", db);
+        Store kohlsDeptStore = new KohlsDeptStore(); 
+        register.startNewSale("100", kohlsDeptStore, db);
         
         // test code
 //        Customer customer = register.getReceipt().getCustomer();
@@ -36,10 +37,9 @@ public class JCDiscountStrategy {
 //        for(LineItem item: items){
 //            System.out.println(item.getProduct().getProductName());
 //        }
-        ReceiptOutputStrategy output = new ConsoleOutput();
-        ReceiptOutputStrategy output2 = new JOptionOutput();
-        register.endSale(output);
-        register.endSale(output2);
+        ReceiptOutputStrategy console = new ConsoleOutput();
+        ReceiptOutputStrategy jOption = new JOptionOutput();
+        register.endSale(console, jOption);
     }
     
 }
