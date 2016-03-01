@@ -9,7 +9,7 @@ package jc.discountstrategy;
  *
  * @author Juan
  */
-public interface Store {
+public interface StoreStrategy {
     public abstract String getStoreName();
     
     public abstract String getStoreID();

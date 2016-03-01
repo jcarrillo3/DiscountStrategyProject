@@ -9,7 +9,7 @@ package jc.discountstrategy;
  *
  * @author Juan
  */
-public class KohlsDeptStore implements Store {
+public class KohlsDeptStore implements StoreStrategy {
     private final String STORE_NAME = "Kohl's Dept. Store";
     private String STORE_ID;
     

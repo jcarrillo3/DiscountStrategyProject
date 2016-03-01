@@ -17,9 +17,9 @@ public class JOptionOutput implements ReceiptOutputStrategy{
         for (LineItem item: receipt.getLineItems()){
             lineItems += "\n" + item.getLineItemData();
         }
-        lineItems += "\n\n" + "Total: " +receipt.getReceiptTotal();
+        
         JOptionPane.showMessageDialog(null, new JTextArea(receipt.getReceiptHeader() +
-                lineItems));
+                lineItems + receipt.getReceiptTotals()));
     }
     
 }

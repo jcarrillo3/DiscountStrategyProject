@@ -13,11 +13,12 @@ public class ConsoleOutput implements ReceiptOutputStrategy {
 
     @Override
     public final void printReceipt(Receipt receipt) {
+        // needs validation
         System.out.println(receipt.getReceiptHeader());
         for (LineItem item: receipt.getLineItems()){
             System.out.println(item.getLineItemData());
         }
-        System.out.println("Total: "+ receipt.getReceiptTotal());
+        System.out.println(receipt.getReceiptTotals());
     }
     
 }

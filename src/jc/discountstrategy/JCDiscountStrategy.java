@@ -20,7 +20,7 @@ public class JCDiscountStrategy {
         
         // Start talking to objects
         Register register = new Register();
-        Store kohlsDeptStore = new KohlsDeptStore(); 
+        StoreStrategy kohlsDeptStore = new KohlsDeptStore(); 
         register.startNewSale("100", kohlsDeptStore, db);
         
         // test code

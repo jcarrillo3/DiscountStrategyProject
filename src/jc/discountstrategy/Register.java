@@ -13,19 +13,21 @@ public class Register {
     private Receipt receipt;
     private ReceiptOutputStrategy receiptOutput;
     
-    public final void startNewSale(String custID, Store store, DatabaseStrategy db){
+    public final void startNewSale(String custID, StoreStrategy store, DatabaseStrategy db){
         // needs validation
         receipt = new Receipt(custID, store, db);
     }
     public final void endSale(ReceiptOutputStrategy consoleOutput, ReceiptOutputStrategy guiOutput){
-        receiptOutput.printReceipt(receipt);
+        // needs validation
+        consoleOutput.printReceipt(receipt);
         guiOutput.printReceipt(receipt);
     }
     public final void addItemToSale(String prodID, int qty){
+        // needs validation
         receipt.addItemToReceipt(prodID, qty);
     }
 
-    public Receipt getReceipt(){
+    public final Receipt getReceipt(){
         return receipt;
     }
 

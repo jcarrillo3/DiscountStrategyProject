@@ -11,12 +11,12 @@ import java.util.Date;
  * @author Juan
  */
 public class Receipt {
-    private Store store;
+    private StoreStrategy store;
     private DatabaseStrategy db;
     private Customer customer;
     private LineItem[] lineItems;
 
-    public Receipt(String custID, Store store, DatabaseStrategy db) {
+    public Receipt(String custID, StoreStrategy store, DatabaseStrategy db) {
         setDb(db);
         setCustomer(db.findCustomerByID(custID));
         lineItems = new LineItem[0];
@@ -24,12 +24,14 @@ public class Receipt {
     }
 
     public final void addItemToReceipt(String prodID, int qty){
+        // needs validation
         LineItem item = new LineItem(prodID, qty, db);
         
         addItemToArray(lineItems, item);
     }
     
     private final void addItemToArray(LineItem[] origArray, LineItem item){
+        // needs validation
         LineItem[] tempArray = new LineItem[origArray.length+1];
         System.arraycopy(origArray, 0, tempArray, 0, origArray.length);
         tempArray[tempArray.length-1] = item;
@@ -39,7 +41,7 @@ public class Receipt {
     
     public final String getDateTime(){
         Date date = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         return df.format(date);
     }
     
@@ -47,17 +49,37 @@ public class Receipt {
         String header = getStore().getStoreName() +"\n"
                 + getDateTime() + "\n"
                 + "Customer: "+getCustomer().getCustomerName() +"\n\n"
-                + "ID     Product         Qty    Sub     Discount \n"
+                + "ID     Product         Qty    SubTotal     Discount \n"
                 + "--------------------------------------------------"
                 ;
         return header;
     }
-    public final double getReceiptTotal(){
-        double total = 0;
+    public final String getReceiptTotals(){
+        String totals = "\n\nTotal Before Dicount: " + getTotalBeforeDiscount() 
+                + "\n" + "Total After Dicount: " + getTotalAfterDiscount() 
+                + "\n" + "Total Saved: " + getTotalSaved();
+        return totals;    
+    }
+    private final double getTotalBeforeDiscount(){
+        double amount = 0;
         for (LineItem item: lineItems){
-            total += item.getSubtotal() - item.getDiscountAmt();
+            amount += item.getSubtotal();
         }
-        return total;
+        return amount;
+    }
+    private final double getTotalAfterDiscount(){
+        double amount = 0;
+        for (LineItem item: lineItems){
+            amount += item.getSubtotal() - item.getDiscountAmt();
+        }
+        return amount;
+    }
+    private final double getTotalSaved(){
+        double amount = 0;
+        for (LineItem item: lineItems){
+            amount += item.getDiscountAmt();
+        }
+        return amount;
     }
     
     public final Customer getCustomer() {
@@ -78,7 +100,7 @@ public class Receipt {
         this.db = db;
     }
 
-    public LineItem[] getLineItems() {
+    public final LineItem[] getLineItems() {
         return lineItems;
     }
 
@@ -87,11 +109,11 @@ public class Receipt {
         this.lineItems = lineItems;
     }
     
-    public final Store getStore() {
+    public final StoreStrategy getStore() {
         return store;
     }
 
-    public final void setStore(Store store) {
+    public final void setStore(StoreStrategy store) {
         // needs validation
         this.store = store;
     }
