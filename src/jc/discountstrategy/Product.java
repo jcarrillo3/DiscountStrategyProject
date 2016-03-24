@@ -25,7 +25,11 @@ public class Product {
     public final String getProductID() {
         return productID;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param productID 
+     */
     public final void setProductID(String productID) {
         // needs validation
         this.productID = productID;
@@ -34,7 +38,11 @@ public class Product {
     public final String getProductName() {
         return productName;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param productName 
+     */
     public final void setProductName(String productName) {
         // needs validation
         this.productName = productName;
@@ -43,7 +51,11 @@ public class Product {
     public final double getUnitCost() {
         return unitCost;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param unitCost 
+     */
     public final void setUnitCost(double unitCost) {
         // needs validation
         this.unitCost = unitCost;
@@ -52,7 +64,11 @@ public class Product {
     public final DiscountStrategy getDiscount() {
         return discount;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param discount 
+     */
     public final void setDiscount(DiscountStrategy discount) {
         // needs validation
         this.discount = discount;

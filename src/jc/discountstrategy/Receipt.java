@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package jc.discountstrategy;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 /**
  *
  * @author Juan
@@ -15,21 +14,41 @@ public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
     private LineItem[] lineItems;
-
+    private DateTime date;
+    public final String CUSTOMER_LABEL = "Customer: ";
+    public final String ID_HEADER = "ID";
+    public final String PRODUCT_HEADER = "Product";
+    public final String QTY_HEADER = "Qty";
+    public final String SUBTOTAL_HEADER = "Subtotal";
+    public final String DISCOUNT_HEADER = "Discount";
+    
     public Receipt(String custID, StoreStrategy store, DatabaseStrategy db) {
         setDb(db);
         setCustomer(db.findCustomerByID(custID));
         lineItems = new LineItem[0];
         this.store = store;
+        date = new DateTime();
     }
-
-    public final void addItemToReceipt(String prodID, int qty){
-        // needs validation
+    
+    /**
+     * Parameters are not validated:
+     * @param prodID
+     * @param qty 
+     */
+    public final void addItemToReceipt(String prodID, int qty) throws IllegalArgumentException{
+        if (prodID == null || prodID.isEmpty() || qty < 1){
+            throw new IllegalArgumentException("ProductID and/or Quantity must be valid values.");
+        }
         LineItem item = new LineItem(prodID, qty, db);
         
         addItemToArray(lineItems, item);
     }
     
+    /**
+     * Parameters are not validated:
+     * @param origArray
+     * @param item 
+     */
     private final void addItemToArray(LineItem[] origArray, LineItem item){
         // needs validation
         LineItem[] tempArray = new LineItem[origArray.length+1];
@@ -39,17 +58,11 @@ public class Receipt {
         lineItems = origArray;
     }
     
-    public final String getDateTime(){
-        Date date = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        return df.format(date);
-    }
-    
     public final String getReceiptHeader() {
         String header = getStore().getStoreName() +"\n"
-                + getDateTime() + "\n"
-                + "Customer: "+getCustomer().getCustomerName() +"\n\n"
-                + "ID     Product         Qty    SubTotal     Discount \n"
+                + date.getDateTime() + "\n"
+                + CUSTOMER_LABEL + getCustomer().getCustomerName() +"\n\n"
+                + ID_HEADER +"\t"+ PRODUCT_HEADER +"\t"+  QTY_HEADER +"\t"+ SUBTOTAL_HEADER +"\t"+ DISCOUNT_HEADER +"\n"
                 + "--------------------------------------------------"
                 ;
         return header;
@@ -85,7 +98,11 @@ public class Receipt {
     public final Customer getCustomer() {
         return customer;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param customer 
+     */
     public final void setCustomer(Customer customer) {
         // needs validation
         this.customer = customer;
@@ -94,7 +111,11 @@ public class Receipt {
     public final DatabaseStrategy getDb() {
         return db;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param db 
+     */
     public final void setDb(DatabaseStrategy db) {
         // needs validation
         this.db = db;
@@ -103,7 +124,11 @@ public class Receipt {
     public final LineItem[] getLineItems() {
         return lineItems;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param lineItems 
+     */
     public final void setLineItems(LineItem[] lineItems) {
         // needs validation
         this.lineItems = lineItems;
@@ -112,7 +137,11 @@ public class Receipt {
     public final StoreStrategy getStore() {
         return store;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param store 
+     */
     public final void setStore(StoreStrategy store) {
         // needs validation
         this.store = store;

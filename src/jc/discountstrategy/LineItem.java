@@ -15,12 +15,12 @@ public class LineItem {
 
     public LineItem(String prodID, int qty, DatabaseStrategy db) {
         setProduct(db.findProductByID(prodID));
-        this.qty = qty;
+        setQty(qty);
     }
     
     public final String getLineItemData(){
-        String data = product.getProductID() + "    " + product.getProductName()
-                + "\t " + qty + "\t" + this.getSubtotal() + "\t  "
+        String data = product.getProductID() + "\t" + product.getProductName()
+                + "\t" + qty + "\t" + this.getSubtotal() + "\t"
                 + product.getDiscount().getDiscountAmt(qty, product.getUnitCost());
         return data;
     }
@@ -28,7 +28,11 @@ public class LineItem {
     public final Product getProduct() {
         return product;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param product 
+     */
     public final void setProduct(Product product) {
         // needs validation
         this.product = product;
@@ -37,7 +41,11 @@ public class LineItem {
     public final int getQty() {
         return qty;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param qty 
+     */
     public final void setQty(int qty) {
         // needs validation
         this.qty = qty;

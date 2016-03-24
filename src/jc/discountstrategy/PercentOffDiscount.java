@@ -16,7 +16,13 @@ public class PercentOffDiscount implements DiscountStrategy {
         setDiscountRate(discountRate);
     }
     
-    
+    /**
+     * Parameters are not validated:
+     * @param qty
+     * @param unitCost
+     * 
+     * @return discount amount
+     */
     @Override
     public final double getDiscountAmt(int qty, double unitCost) {
         // needs validation
@@ -26,7 +32,11 @@ public class PercentOffDiscount implements DiscountStrategy {
     public final double getDiscountRate() {
         return discountRate;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param discountRate 
+     */
     public final void setDiscountRate(double discountRate) {
         // needs validation
         this.discountRate = discountRate;

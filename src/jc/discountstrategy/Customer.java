@@ -21,7 +21,11 @@ public class Customer {
     public final String getCustomerID() {
         return customerID;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param customerID 
+     */
     public final void setCustomerID(String customerID) {
         // needs validation
         this.customerID = customerID;
@@ -30,7 +34,11 @@ public class Customer {
     public final String getCustomerName() {
         return customerName;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param customerName 
+     */
     public final void setCustomerName(String customerName) {
         // needs validation
         this.customerName = customerName;

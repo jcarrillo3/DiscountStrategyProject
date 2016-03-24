@@ -10,7 +10,11 @@ package jc.discountstrategy;
  * @author Juan
  */
 public class ConsoleOutput implements ReceiptOutputStrategy {
-
+    
+    /**
+     * Parameters are not validated
+     * @param receipt 
+     */
     @Override
     public final void printReceipt(Receipt receipt) {
         // needs validation

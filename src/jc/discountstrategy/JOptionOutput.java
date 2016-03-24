@@ -11,6 +11,10 @@ import javax.swing.*;
  */
 public class JOptionOutput implements ReceiptOutputStrategy{
     
+    /**
+     * Parameters are not validated:
+     * @param receipt 
+     */
     @Override
     public void printReceipt(Receipt receipt) {
         String lineItems = "";

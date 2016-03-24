@@ -12,9 +12,13 @@ package jc.discountstrategy;
 public class NoDiscount implements DiscountStrategy {
     private final int NO_DISCOUNT = 0;
 
-    public NoDiscount() {
-    }
-    
+    /**
+     * Parameters are not validated:
+     * @param qty
+     * @param unitCost
+     * 
+     * @return NO_DISCOUNT (0)
+     */
     @Override
     public final double getDiscountAmt(int qty, double unitCost) {
         // needs validation

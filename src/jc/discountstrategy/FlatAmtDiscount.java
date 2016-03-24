@@ -16,7 +16,12 @@ public class FlatAmtDiscount implements DiscountStrategy {
         setDiscountRate(discountRate);
     }
     
-    
+    /**
+     * Parameters are not validated:
+     * @param qty
+     * @param unitCost
+     * @return 
+     */
     @Override
     public final double getDiscountAmt(int qty, double unitCost) {
         // needs validation
@@ -26,7 +31,11 @@ public class FlatAmtDiscount implements DiscountStrategy {
     public final double getDiscountRate() {
         return discountRate;
     }
-
+    
+    /**
+     * Parameters are not validated:
+     * @param discountRate 
+     */
     public final void setDiscountRate(double discountRate) {
         // needs validation
         this.discountRate = discountRate;

@@ -4,18 +4,17 @@
  * and open the template in the editor.
  */
 package jc.discountstrategy;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Juan
  */
-public class DateTime {
+public class DigitalReceiptFormat implements ReceiptFormatStrategy {
 
-    public final String getDateTime() {
-        Date date = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        return df.format(date);
+    
+    @Override
+    public String getReceiptFormat(Receipt receipt) {
+        return "";
     }
     
 }

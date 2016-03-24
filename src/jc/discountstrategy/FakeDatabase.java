@@ -21,6 +21,11 @@ public class FakeDatabase implements DatabaseStrategy {
         new Product("30", "Brown Scarf", 19.95, new NoDiscount())
     };
     
+    /**
+     * Parameters are not validated:
+     * @param prodID
+     * @return 
+     */
     @Override
     public final Product findProductByID(String prodID){
        // needs validation
@@ -35,9 +40,17 @@ public class FakeDatabase implements DatabaseStrategy {
         return product; 
     }
     
+    /**
+     * Parameters are not validated:
+     * @param custID
+     * @return 
+     */
     @Override
-    public final Customer findCustomerByID(String custID){
-        // needs validation
+    public final Customer findCustomerByID(String custID) throws IllegalArgumentException{
+        if (custID == null || custID.isEmpty()){
+            throw new IllegalCustomerIDException();
+        }
+        else {
         Customer customer = null;
         
         for(Customer c: customers){
@@ -47,5 +60,6 @@ public class FakeDatabase implements DatabaseStrategy {
             }
         }
         return customer;
+        }
     }
 }

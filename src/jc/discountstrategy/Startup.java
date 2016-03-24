@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package jc.discountstrategy;
+import java.text.DecimalFormat;
 /**
  *
  * @author Juan
  */
-public class JCDiscountStrategy {
+public class Startup {
 
     /**
      * @param args the command line arguments
